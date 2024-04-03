@@ -1,9 +1,16 @@
-import { Container } from "./styles";
+import { Container, Profile } from "./styles";
 
 export function Header() {
   return (
     <Container>
-      <h1>Header</h1>
+      <Profile>
+        <img src="https://github.com/darioreisjr.png" alt="Foto de perfil" />
+
+        <div>
+          <span>Bem-vindo</span>
+          <strong>Dario Reis</strong>
+        </div>
+      </Profile>
     </Container>
   );
 }
