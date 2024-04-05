@@ -1,4 +1,4 @@
-import { Container, Links } from "./styles";
+import { Container, Links, Content } from "./styles";
 
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
@@ -11,22 +11,40 @@ export function Details() {
     <Container>
       <Header />
 
-      <ButtonText title="Excluir nota"/>
+      <main>
+        <Content>
+          <ButtonText title="Excluir nota" />
 
-      <Section title="Links úteis">
-        <Links>
-          <li><a href="#">https://darioreisjr.vercel.app/</a></li>
-          <li><a href="#">https://darioreisjr.vercel.app/</a></li>
-        </Links>
-      </Section>
+          <h1>Introdução ao React</h1>
 
-      <Section title="Marcadores">
-        <Tag title="express"/>
-        <Tag title="nodejs"/>
-      </Section>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            venenatis vel turpis a maximus. Nam sit amet lacinia turpis. In
+            hac habitasse platea dictumst. Pellentesque tincidunt, mauris vel
+            sollicitudin tempus, purus augue tincidunt neque, sit amet
+            iaculis ante nisl in odio. Nulla facilisi. Duis sit amet  nunc sed
+            sapien volutpat viverra.
+          </p>
 
+          <Section title="Links úteis">
+            <Links>
+              <li>
+                <a href="#">https://darioreisjr.vercel.app/</a>
+              </li>
+              <li>
+                <a href="#">https://darioreisjr.vercel.app/</a>
+              </li>
+            </Links>
+          </Section>
 
-      <Button title="Voltar" />
+          <Section title="Marcadores">
+            <Tag title="express" />
+            <Tag title="nodejs" />
+          </Section>
+
+          <Button title="Voltar" />
+        </Content>
+      </main>
     </Container>
   );
 }
