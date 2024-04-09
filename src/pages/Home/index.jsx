@@ -3,6 +3,7 @@ import { Container, Brand, Menu, Search, Content, NewNote } from "./styles";
 
 import { Header } from "../../components/Header";
 import { ButtonText } from "../../components/ButtonText";
+import { Input } from "../../components/Input";
 
 export function Home() {
   return (
@@ -25,7 +26,9 @@ export function Home() {
         </li>
       </Menu>
 
-      <Search></Search>
+      <Search>
+        <Input placeholder="Pesquisar pelo titulo" />
+      </Search>
 
       <Content></Content>
 
