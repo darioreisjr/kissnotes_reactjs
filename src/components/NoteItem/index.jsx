@@ -1,4 +1,4 @@
-import { FiPlus, Fix } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 
 import { Container } from "./styles";
 
@@ -10,8 +10,9 @@ export function NoteItem({ isNew, value, onClick, ...rest }) {
       <button
         type="button"
         onClick={onClick}
+        className={!isNew ? "button-delete" : "button-add"}
       >
-        {isNew ? <FiPlus /> : <Fix />}
+        {isNew ? <FiPlus /> : <FiX />}
       </button>
     </Container>
   );

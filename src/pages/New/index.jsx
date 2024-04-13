@@ -1,8 +1,10 @@
-import {Header} from '../../components/Header'
-import {Input} from '../../components/Input'
-import { TextArea } from '../../components/TextArea'
+import { Header } from "../../components/Header";
+import { Input } from "../../components/Input";
+import { TextArea } from "../../components/TextArea";
+import { Section } from "../../components/Section";
+import { NoteItem } from "../../components/NoteItem";
 
-import {Container, Form} from './styles'
+import { Container, Form } from "./styles";
 
 export function New() {
   return (
@@ -16,11 +18,15 @@ export function New() {
             <a href="/">Voltar</a>
           </header>
 
-          <Input placeholder="Título"/>
-          <TextArea placeholder="Observações"/>
+          <Input placeholder="Título" />
+          <TextArea placeholder="Observações" />
+
+          <Section title="Links úteis">
+            <NoteItem value="https://darioreisjr.vercel.app/" />
+            <NoteItem isNew placeholder="Novo link" />
+          </Section>
         </Form>
       </main>
     </Container>
-  )
+  );
 }
-
