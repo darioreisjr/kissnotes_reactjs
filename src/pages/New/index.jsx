@@ -45,16 +45,36 @@ export function New() {
   }
 
   async function handleNewNote() {
-    await api.post("/notes",{
-      title,
-      description,
-      tags,
-      links
-    });
-
-    alert("Nota criada com sucesso!");
-    navigate("/");
+    if (!title) {
+      return alert("Por favor, insira o título da nota");
     }
+
+    if (newLink) {
+      return alert(
+        "Você deixou uma link no campo para adicionar, mas não clicou em adicionar. Clique em adicionar ou deixa o campo vazio."
+      );
+    }
+
+    if (newTag) {
+      return alert(
+        "Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique em adicionar ou deixa o campo vazio."
+      );
+    }
+
+    try {
+      await api.post("/notes", {
+        title,
+        description,
+        tags,
+        links,
+      });
+      alert("Nota criada com sucesso!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating note:", error);
+      alert("Houve um erro ao criar a nota. Tente novamente mais tarde."); // Inform user about error
+    }
+  }
 
   return (
     <Container>
