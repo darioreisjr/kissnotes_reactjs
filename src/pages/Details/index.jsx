@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
 import { Container, Links, Content } from "./styles";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { api } from "../../services/api";
 
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
@@ -7,44 +11,63 @@ import { Tag } from "../../components/Tag";
 import { ButtonText } from "../../components/ButtonText";
 
 export function Details() {
+  const [data, setData] = useState(null);
+
+  const params = useParams();
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    async function fetchNote() {
+      const response = await api.get(`/notes/${params.id}`);
+      setData(response.data);
+    }
+
+    fetchNote();
+  }, []);
+
   return (
     <Container>
       <Header />
+      {data && (
+        <main>
+          <Content>
+            <ButtonText title="Excluir nota" />
 
-      <main>
-        <Content>
-          <ButtonText title="Excluir nota" />
+            <h1>{data.title}</h1>
 
-          <h1>Introdução ao React</h1>
+            <p>{data.description}</p>
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            venenatis vel turpis a maximus. Nam sit amet lacinia turpis. In
-            hac habitasse platea dictumst. Pellentesque tincidunt, mauris vel
-            sollicitudin tempus, purus augue tincidunt neque, sit amet
-            iaculis ante nisl in odio. Nulla facilisi. Duis sit amet  nunc sed
-            sapien volutpat viverra.
-          </p>
+            {data.links && (
+              <Section title="Links úteis">
+                <Links>
+                  {data.links.map((link) => (
+                    <li key={String(link.id)}>
+                      <a href={link.url} target="_blank">
+                        {link.url}
+                      </a>
+                    </li>
+                  ))}
+                </Links>
+              </Section>
+            )}
 
-          <Section title="Links úteis">
-            <Links>
-              <li>
-                <a href="#">https://darioreisjr.vercel.app/</a>
-              </li>
-              <li>
-                <a href="#">https://darioreisjr.vercel.app/</a>
-              </li>
-            </Links>
-          </Section>
+            {data.tags && (
+              <Section title="Marcadores">
+                {data.tags.map((tag) => (
+                  <Tag key={String(tag.id)} title={tag.name} />
+                ))}
+              </Section>
+            )}
 
-          <Section title="Marcadores">
-            <Tag title="express" />
-            <Tag title="nodejs" />
-          </Section>
-
-          <Button title="Voltar" />
-        </Content>
-      </main>
+            <Button title="Voltar" onClick={handleBack} />
+          </Content>
+        </main>
+      )}
     </Container>
   );
 }
